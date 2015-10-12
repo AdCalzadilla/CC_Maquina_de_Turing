@@ -2,33 +2,40 @@ package es.ull.cc.mt;
 
 public class Transition {
 	
-	private String eState;
-	private String eTape;
+	private String wTape;
+	private String eMove;
 	
-	public Transition(String eState, String eStack){
-		this.seteState(eState);
-		this.seteStack(eStack);
+	public Transition(String wTape, String eMove){
+		this.setwTape(wTape);
+		this.seteMove(eMove);
 	}
 
-	public String geteState() {
-		return eState;
+	public String getwTape() {
+		return wTape;
 	}
 
-	public void seteState(String eState) {
-		this.eState = eState;
+
+
+	public void setwTape(String wTape) {
+		this.wTape = wTape;
 	}
 
-	public String geteStack() {
-		return eTape;
+
+
+	public String geteMove() {
+		return eMove;
 	}
 
-	public void seteStack(String eTape) {
-		this.eTape = eTape;
+
+
+	public void seteMove(String eMove) {
+		this.eMove = eMove;
 	}
+
 
 	@Override
 	public String toString() {
-		return "("+ eState + ", "+ eTape+")";
+		return "("+ wTape + ", "+ eMove+")";
 	}
 
 }
