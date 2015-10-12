@@ -1,0 +1,81 @@
+Last login: Mon Oct 12 19:03:34 on ttys001
+MacBook-Air-de-Adrian-3:CC Adrian $ cd ..
+MacBook-Air-de-Adrian-3:workspace Adrian $ ls
+Admin		DAA		IAA		Optimizacion	TID		cursos		web_scraping
+CC		IA		LPP		PL		codigo_eloy	games
+MacBook-Air-de-Adrian-3:workspace Adrian $ cd CC
+MacBook-Air-de-Adrian-3:CC Adrian $ ls
+Automata_de_pila	Automata_de_pila.zip	Máquina_Turing		Practica1.pdf
+MacBook-Air-de-Adrian-3:CC Adrian $ cd Automata_de_pila
+MacBook-Air-de-Adrian-3:Automata_de_pila Adrian [master] $ ls
+README.md	bin		files		src
+MacBook-Air-de-Adrian-3:Automata_de_pila Adrian [master] $ ls -la
+total 32
+drwxr-xr-x  11 Adrian  staff  374 30 sep 20:42 .
+drwxr-xr-x   9 Adrian  staff  306 11 oct 15:33 ..
+-rw-r--r--   1 Adrian  staff  295 25 sep 10:22 .classpath
+drwxr-xr-x  12 Adrian  staff  408  8 oct 10:51 .git
+-rw-r--r--   1 Adrian  staff  458 30 sep 20:33 .gitignore
+-rw-r--r--   1 Adrian  staff  375 25 sep 10:22 .project
+drwxr-xr-x   3 Adrian  staff  102 25 sep 10:22 .settings
+-rw-r--r--   1 Adrian  staff  144 30 sep 20:42 README.md
+drwxr-xr-x   3 Adrian  staff  102  6 oct 12:17 bin
+drwxr-xr-x   5 Adrian  staff  170  8 oct 10:06 files
+drwxr-xr-x   3 Adrian  staff  102 25 sep 12:50 src
+MacBook-Air-de-Adrian-3:Automata_de_pila Adrian [master] $ vi .gitignore 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# TeXlipse plugin
+.texlipse
+".gitignore" 39L, 458C
+
