@@ -14,24 +14,17 @@ public class Transition {
 		return wTape;
 	}
 
-
-
 	public void setwTape(String wTape) {
 		this.wTape = wTape;
 	}
-
-
 
 	public String geteMove() {
 		return eMove;
 	}
 
-
-
 	public void seteMove(String eMove) {
 		this.eMove = eMove;
 	}
-
 
 	@Override
 	public String toString() {

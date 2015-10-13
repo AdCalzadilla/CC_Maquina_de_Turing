@@ -14,10 +14,39 @@ public class Mt {
 
 	private void createMachine() {
 		State tempState;
-		int line_one = file.getNumFinalLine().get(0)+1;
+		LinkedList<String>auxFile = file.getFileList();
+		LinkedList<Integer>auxNumRows = file.getNumFinalLine();
 		
-		for(int i=0; i<line_one;i++){
-			tempState = new State(file.getFileList().get(i));
+		int line=0;
+		int element=0;
+		int i;
+		
+		while(line < auxNumRows.size()){
+			i = 0;
+			while(i < auxNumRows.get(line)){
+				switch(line){
+					case 0:
+						tempState = new State(auxFile.get(element));
+						statesList.add(tempState);
+						break;
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					case 5:
+						break;
+					default:
+						break;
+				}
+				i++;
+				element++;
+			}
+			System.out.print("\n");
+			line++;
 		}
 		defineTransition();
 		

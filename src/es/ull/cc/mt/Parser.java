@@ -14,6 +14,9 @@ public class Parser {
 	private LinkedList<String>fileList;
 	
 	public Parser(String route){
+		numFinalLine = new LinkedList<Integer>();
+		fileList = new LinkedList<String>();
+		
 		File document;
 		FileReader myFile;
 		BufferedReader br;
@@ -34,7 +37,7 @@ public class Parser {
 		String line;
 		String token_line;
 		StringTokenizer st;
-		int numElementBeforeLine = 0;
+		int numElementBefore = 0;
 		
 		try {
 			line = br.readLine();
@@ -49,8 +52,9 @@ public class Parser {
 						fileList.add(token_line);
 					}
 				}
-				numFinalLine.add(numFinalLine.size()- numElementBeforeLine);
-				numElementBeforeLine = numFinalLine.size();
+				numFinalLine.add(fileList.size()- numElementBefore);
+				numElementBefore = fileList.size();
+				line = br.readLine();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

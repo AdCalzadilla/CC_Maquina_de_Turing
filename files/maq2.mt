@@ -1,0 +1,13 @@
+# Máquina que reconoce el lenguaje: w = (a|b|c)* ^ |a| es par.
+q0 q1
+a b c
+a b c .
+q0
+.
+q0
+q0 a q1 a R
+q0 b q0 b R
+q0 c q0 c R
+q1 a q0 a R
+q1 b q1 b R
+q1 c q1 c R
