@@ -10,11 +10,11 @@ import java.util.StringTokenizer;
 
 public class Parser {
 
-	private LinkedList<Integer>numFinalLine;
+	private LinkedList<Integer>numRow;
 	private LinkedList<String>fileList;
 	
 	public Parser(String route){
-		numFinalLine = new LinkedList<Integer>();
+		numRow = new LinkedList<Integer>();
 		fileList = new LinkedList<String>();
 		
 		File document;
@@ -38,22 +38,27 @@ public class Parser {
 		String token_line;
 		StringTokenizer st;
 		int numElementBefore = 0;
+		boolean notAdd;
 		
 		try {
 			line = br.readLine();
 			while(br != null && line != null){
+				notAdd = false;
 				st = new StringTokenizer(line);
 				while(st.hasMoreTokens()){
 					token_line = st.nextToken();
 					if(token_line.charAt(0) == '#'){
+						notAdd = true;
 						break;
 					}
 					else{
 						fileList.add(token_line);
 					}
 				}
-				numFinalLine.add(fileList.size()- numElementBefore);
-				numElementBefore = fileList.size();
+				if(!notAdd){
+					numRow.add(fileList.size()- numElementBefore);
+					numElementBefore = fileList.size();
+				}
 				line = br.readLine();
 			}
 		} catch (IOException e) {
@@ -62,12 +67,12 @@ public class Parser {
 		}
 	}
 	
-	public LinkedList<Integer> getNumFinalLine() {
-		return numFinalLine;
+	public LinkedList<Integer> getNumRow() {
+		return numRow;
 	}
 
-	public void setNumFinalLine(LinkedList<Integer> numFinalLine) {
-		this.numFinalLine = numFinalLine;
+	public void setNumRow(LinkedList<Integer> numRow) {
+		this.numRow = numRow;
 	}
 
 	public LinkedList<String> getFileList() {
@@ -80,6 +85,23 @@ public class Parser {
 	
 	public int size(){
 		return  fileList.size();
+	}
+	
+	// --- Nuevos métodos
+	public LinkedList<String> getFileLine(int line){
+		LinkedList<String>temp = new LinkedList<String>();
+		int element = 0;
+		
+		for(int i=0; i < line; i++){
+			element = element + numRow.get(i);
+		}
+		
+		for(int i = 0; i < numRow.get(line); i++){
+				System.out.print(fileList.get(element)+" ");
+				temp.add(fileList.get(element));
+				element++;
+		}
+		return null;
 	}
 }
 

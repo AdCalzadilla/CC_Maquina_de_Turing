@@ -15,7 +15,7 @@ public class Mt {
 	private void createMachine() {
 		State tempState;
 		LinkedList<String>auxFile = file.getFileList();
-		LinkedList<Integer>auxNumRows = file.getNumFinalLine();
+		LinkedList<Integer>auxNumRows = file.getNumRow();
 		
 		int line=0;
 		int element=0;
@@ -53,7 +53,7 @@ public class Mt {
 	}
 
 	private void defineTransition() {
-		int line_Transitions = file.getNumFinalLine().get(6)+1;
+		int line_Transitions = file.getNumRow().get(6)+1;
 		
 		for(int i=line_Transitions; i<file.size();i++){
 			
