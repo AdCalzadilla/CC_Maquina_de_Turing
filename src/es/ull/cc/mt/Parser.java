@@ -83,8 +83,12 @@ public class Parser {
 		this.fileList = fileList;
 	}
 	
-	public int size(){
+	public int fileListSize(){
 		return  fileList.size();
+	}
+	
+	public int numRowSize(){
+		return numRow.size();
 	}
 	
 	// --- Nuevos métodos

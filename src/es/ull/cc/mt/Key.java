@@ -1,12 +1,32 @@
 package es.ull.cc.mt;
 
+import java.util.LinkedList;
+
 public class Key {
-	private String coor_x;
-	private String coor_y;
+	private String state;
+	private LinkedList<Character> tapeKeys;
 	
-	public Key(String coor_x, String coor_y){
-		this.coor_x = coor_x;
-		this.coor_y = coor_y;
+	public Key(String state, LinkedList<Character> tapeKeys){
+		this.setState(state);
+		this.tapeKeys = tapeKeys;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	
+	public void setState(String state){
+		this.state = state;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		char c1 = state.charAt(0);
+		char c2 = tapeKeys.get(0);
+		int result = c1;
+        result = 31 * result + c2;
+        return result;
 	}
 
 	@Override
@@ -18,9 +38,32 @@ public class Key {
 			return false;
 		}
 		Key theKey = (Key) obj;
-		return coor_x.equals(theKey.coor_x) && coor_y.equals(theKey.coor_y);
+		if(theKey.getState() != this.getState()){
+			return false;
+		}
+		if(tapeKeys.size() != theKey.tapeKeys.size()){
+			return false;
+		}
+		for(int i=0; i < tapeKeys.size(); i++){
+			if(tapeKeys.get(i) != theKey.tapeKeys.get(i)){
+				return false;
+			}
+		}
+		return true;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String aux = "( "+state+ " ";
+		for(int i=0; i<tapeKeys.size(); i++){
+			aux = aux + tapeKeys.get(i)+" ";
+		}
+		aux = aux +")";
+		return super.toString();
+	}	
+
+/*
 	@Override
 	public int hashCode() {
 		char c1 = coor_x.charAt(0);
@@ -29,10 +72,6 @@ public class Key {
         result = 31 * result + c2;
         return result;
 	}
-
-	@Override
-	public String toString() {
-		return "("+ coor_x +", "+coor_y+")";
-	}	
+*/
 
 }

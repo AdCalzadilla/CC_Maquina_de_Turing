@@ -6,6 +6,10 @@ public class Mt {
 	
 	private Parser file;
 	private LinkedList<State>statesList;
+	private LinkedList<Character>alphabetList;
+	private LinkedList<Character>tapeAlphabetList;
+	private String initState;
+	private String whiteCharacter;
 	
 	public Mt(String route){
 		file = new Parser(route);
@@ -13,51 +17,72 @@ public class Mt {
 	}
 
 	private void createMachine() {
-		State tempState;
-		LinkedList<String>auxFile = file.getFileList();
-		LinkedList<Integer>auxNumRows = file.getNumRow();
+		defineStates();
+		defineAlphabet();
+		defineTapeAlphabet();
+		initState = file.getFileLine(3).get(0);
+		defineFinalStates();
+		defineTransitions();
 		
-		int line=0;
-		int element=0;
-		int i;
-		
-		while(line < auxNumRows.size()){
-			i = 0;
-			while(i < auxNumRows.get(line)){
-				switch(line){
-					case 0:
-						tempState = new State(auxFile.get(element));
-						statesList.add(tempState);
-						break;
-					case 1:
-						break;
-					case 2:
-						break;
-					case 3:
-						break;
-					case 4:
-						break;
-					case 5:
-						break;
-					default:
-						break;
+	}
+	
+	private void defineFinalStates() {
+		LinkedList<String>auxFile = file.getFileLine(4);
+		for(int i=0; i< auxFile.size();i++){
+			for(int j=0; j < statesList.size();j++){
+				if(auxFile.get(i) == statesList.get(j).getsName()){
+					statesList.get(j).setsFinal(true);
+					break;
 				}
-				i++;
-				element++;
 			}
-			System.out.print("\n");
-			line++;
 		}
-		defineTransition();
 		
 	}
 
-	private void defineTransition() {
-		int line_Transitions = file.getNumRow().get(6)+1;
-		
-		for(int i=line_Transitions; i<file.size();i++){
-			
+	private void defineTapeAlphabet() {
+		char aux;
+		LinkedList<String>auxFile = file.getFileLine(1);
+		for(int i=0; i<auxFile.size();i++){
+			aux = auxFile.get(i).charAt(0);
+			tapeAlphabetList.add(aux);
 		}
+	}
+
+	private void defineAlphabet() {
+		char aux;
+		LinkedList<String>auxFile = file.getFileLine(1);
+		for(int i=0; i<auxFile.size();i++){
+			aux = auxFile.get(i).charAt(0);
+			alphabetList.add(aux);
+		}
+	}
+
+	private void defineStates(){
+		State tempState;
+		LinkedList<String>auxFile = file.getFileLine(0);
+		for(int i=0; i<auxFile.size();i++){
+			tempState = new State(auxFile.get(i));
+			statesList.add(tempState);
+		}
+	}
+
+	private void defineTransitions() {
+		int numTapes = getNumTapes();
 		
+	}
+
+	private int getNumTapes() {
+		LinkedList<String>auxFile = file.getFileLine(6);
+		int numTapes=0;
+		
+		for(int i=1; i<auxFile.size(); i++){
+			for(int j=0; j<statesList.size();j++){
+				if(auxFile.get(i) == statesList.get(j).getsName()){
+					numTapes = i -1;
+					break;
+				}
+			}
+		}
+		return numTapes;
 	}
 }
