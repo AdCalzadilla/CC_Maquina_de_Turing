@@ -10,9 +10,14 @@ public class Mt {
 	private LinkedList<Character>tapeAlphabetList;
 	private String initState;
 	private String whiteCharacter;
+	private LinkedList<Tape>tapesList;
 	
 	public Mt(String route){
 		file = new Parser(route);
+		statesList = new LinkedList<State>();
+		alphabetList = new LinkedList<Character>();
+		tapeAlphabetList = new LinkedList<Character>();
+		tapesList = new LinkedList<Tape>();
 		createMachine();
 	}
 
@@ -68,21 +73,29 @@ public class Mt {
 
 	private void defineTransitions() {
 		int numTapes = getNumTapes();
+		String actualState = file.getFileLine(6).get(0);
+		Key tempKey;
+		Transition tempTransition;
+		
+		
+		for(int i=0; i< statesList.size(); i++){
+			if(actualState.equals(statesList.get(i).getsName())){
+				// statesList.get(i).putHashMap(iKey, tran);
+			}
+		}
 		
 	}
 
 	private int getNumTapes() {
 		LinkedList<String>auxFile = file.getFileLine(6);
-		int numTapes=0;
 		
 		for(int i=1; i<auxFile.size(); i++){
 			for(int j=0; j<statesList.size();j++){
-				if(auxFile.get(i) == statesList.get(j).getsName()){
-					numTapes = i -1;
-					break;
+				if(auxFile.get(i).equals(statesList.get(j).getsName())){
+					return i-1;
 				}
 			}
 		}
-		return numTapes;
+		return -1;
 	}
 }

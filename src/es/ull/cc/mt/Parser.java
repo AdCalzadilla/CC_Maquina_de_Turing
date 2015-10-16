@@ -105,7 +105,7 @@ public class Parser {
 				temp.add(fileList.get(element));
 				element++;
 		}
-		return null;
+		return temp;
 	}
 }
 
