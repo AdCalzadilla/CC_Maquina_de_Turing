@@ -27,8 +27,9 @@ public class Mt {
 		defineTapeAlphabet();
 		initState = file.getFileLine(3).get(0);
 		defineFinalStates();
-		defineTransitions();
-		
+		for(int i=6; i < file.numRowSize();i++){
+			defineTransitions(i);
+		}
 	}
 	
 	private void defineFinalStates() {
@@ -71,16 +72,36 @@ public class Mt {
 		}
 	}
 
-	private void defineTransitions() {
+	private void defineTransitions(int line) {
 		int numTapes = getNumTapes();
-		String actualState = file.getFileLine(6).get(0);
+		String actualState = file.getFileLine(line).get(0);
 		Key tempKey;
-		Transition tempTransition;
+		LinkedList<Character>tempKeyList = new LinkedList<Character>();
+		Transition tempTapeTransition;
+		String tempNextState;
+		LinkedList<Character>tempWriteTape = new LinkedList<Character>();
+		LinkedList<Character>tempMoveTape = new LinkedList<Character>();
 		
 		
 		for(int i=0; i< statesList.size(); i++){
 			if(actualState.equals(statesList.get(i).getsName())){
-				// statesList.get(i).putHashMap(iKey, tran);
+				int k = 1;
+				for(int j=0; j< numTapes; j++){
+					tempKeyList.add(file.getFileLine(line).get(k).charAt(0));
+					k++;
+				}
+				tempKey = new Key(tempKeyList);
+				tempNextState = file.getFileLine(line).get(numTapes+1);
+				k = numTapes+2;
+				for(int l=0; l<numTapes; l++){
+					tempWriteTape.add(file.getFileLine(line).get(k).charAt(0));
+					k++;
+				}
+				for(int m = k; m< file.getFileLine(line).size();m++){
+					tempMoveTape.add(file.getFileLine(line).get(m).charAt(0));
+				}
+				tempTapeTransition = new Transition(tempNextState, tempWriteTape, tempMoveTape);
+				statesList.get(i).putHashMap(tempKey, tempTapeTransition);
 			}
 		}
 		
