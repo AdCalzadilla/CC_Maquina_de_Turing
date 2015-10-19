@@ -44,12 +44,11 @@ public class Key {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		String aux = "( ";
+		String aux = "";
 		for(int i=0; i<tapeKeys.size(); i++){
 			aux = aux + tapeKeys.get(i)+" ";
 		}
-		aux = aux +",";
-		return super.toString();
+		return aux;
 	}	
 
 }

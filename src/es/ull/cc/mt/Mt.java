@@ -26,6 +26,7 @@ public class Mt {
 		defineAlphabet();
 		defineTapeAlphabet();
 		initState = file.getFileLine(3).get(0);
+		whiteCharacter = file.getFileLine(4).get(0);
 		defineFinalStates();
 		for(int i=6; i < file.numRowSize();i++){
 			defineTransitions(i);
@@ -33,10 +34,10 @@ public class Mt {
 	}
 	
 	private void defineFinalStates() {
-		LinkedList<String>auxFile = file.getFileLine(4);
+		LinkedList<String>auxFile = file.getFileLine(5);
 		for(int i=0; i< auxFile.size();i++){
 			for(int j=0; j < statesList.size();j++){
-				if(auxFile.get(i) == statesList.get(j).getsName()){
+				if(auxFile.get(i).equals(statesList.get(j).getsName())){
 					statesList.get(j).setsFinal(true);
 					break;
 				}
@@ -118,5 +119,34 @@ public class Mt {
 			}
 		}
 		return -1;
+	}
+	
+	public void printMt(){
+		System.out.println("M = (Q,\u03A3,\u0393,s,b,F,\u03B4)");
+		System.out.print("Q: ");
+		for (State q : statesList) {
+			System.out.print(q.getsName()+" ");
+		}
+		System.out.print("\n\u03A3: ");
+		for (Character tapeChar : alphabetList) {
+			System.out.print(tapeChar +" ");
+		}
+		System.out.print("\n\u0393: ");
+		for (Character tapChar : tapeAlphabetList) {
+			System.out.print(tapChar+" ");
+		}
+		System.out.print("\ns: "+ initState);
+		System.out.print("\nb: "+ whiteCharacter);
+		System.out.print("\nF: ");
+		for (State finalS : statesList) {
+			if( finalS.issFinal()){
+				System.out.print(finalS.getsName()+" ");
+			}
+		}
+		System.out.print("\n\u03B4:\n");
+		for(State s : statesList){
+			s.printMatrix();
+		}
+		
 	}
 }

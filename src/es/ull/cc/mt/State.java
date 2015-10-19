@@ -1,6 +1,9 @@
 package es.ull.cc.mt;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Set;
 
 
 public class State {
@@ -52,6 +55,16 @@ public class State {
 		else{
 			return false;
 		}
+	}
+	
+	public void printMatrix(){
+		Key clave;
+	    Iterator<Key> keyList = matrix.keySet().iterator();
+	    while(keyList.hasNext()){
+	    	System.out.print("\u03B4("+getsName());
+	        clave = keyList.next();
+	        System.out.println(clave + ", " + matrix.get(clave)+" )");
+	    }        
 	}
 	
 	@Override

@@ -101,7 +101,6 @@ public class Parser {
 		}
 		
 		for(int i = 0; i < numRow.get(line); i++){
-				System.out.print(fileList.get(element)+" ");
 				temp.add(fileList.get(element));
 				element++;
 		}
