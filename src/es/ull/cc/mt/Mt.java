@@ -1,6 +1,7 @@
 package es.ull.cc.mt;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Mt {
 	
@@ -28,11 +29,20 @@ public class Mt {
 		initState = file.getFileLine(3).get(0);
 		whiteCharacter = file.getFileLine(4).get(0);
 		defineFinalStates();
+		dimensionTapeList();
 		for(int i=6; i < file.numRowSize();i++){
 			defineTransitions(i);
 		}
 	}
 	
+	private void dimensionTapeList() {
+		Tape tempTape;
+		for(int i=0; i < getNumTapes(); i++){
+			tempTape = new Tape();
+			tapesList.add(tempTape);
+		}
+	}
+
 	private void defineFinalStates() {
 		LinkedList<String>auxFile = file.getFileLine(5);
 		for(int i=0; i< auxFile.size();i++){
@@ -148,5 +158,76 @@ public class Mt {
 			s.printMatrix();
 		}
 		
+	}
+	
+	public void execute(){
+		// -- Variables a utilizar
+		Scanner sc = new Scanner(System.in);
+		State qActual = changeState(initState);
+		Key kActual;
+		boolean stop = false;
+		
+		// -- Variables temporales
+		String tempTape;
+		char tempKeyChar;
+		LinkedList<Character> tempKeyList = new LinkedList<Character>();
+		Transition tempTransition;
+		
+		// -- Inicializando la ejecución
+		for(int i=0; i< tapesList.size();i++){
+			System.out.print(" - Introduzca la cadena que irá en la cinta "+i+": ");
+			tempTape = sc.next();
+			tapesList.get(i).initWord(tempTape);
+		}
+		
+		sc.close();
+		
+		// -- Ejecución
+		System.out.println(" \n\n | Estado \t| Caracter \t| Cinta/s Cabezal \t| Estado siguiente \t| Escritura cintas \t| Movimiento |");
+		System.out.println(" | ------ \t| -------- \t --------------- \t| ---------------- \t| ---------------- \t| ---------- |");
+		while(stop != true){
+			System.out.print(" | "+qActual.getsName()+" \t\t");
+			for(int i=0; i<tapesList.size();i++){
+				tempKeyChar = tapesList.get(i).getActualChar();
+				tempKeyList.add(tempKeyChar);
+				System.out.print("| "+tempKeyChar+" \t\t| ");
+				tapesList.get(i).printTape();
+				System.out.print(" / "+ tapesList.get(i).getPosition()+"\t");
+			}
+			kActual = new Key(tempKeyList);
+			if(qActual.containsKey(kActual)){
+				System.out.print(" |\t "+qActual.getTransition(kActual).getNewState()+" |\t\t "+qActual.getTransition(kActual).getwTape()+" \t\t| "+qActual.getTransition(kActual).getTapeMove()+"\n");
+				// Escribimos estado al que ir, escribimos cinta/s y movemos cabezal
+				tempTransition = qActual.getTransition(kActual);
+				for(int i=0; i<tapesList.size();i++){
+					tapesList.get(i).write(qActual.getTransition(kActual).getwTape().get(i));
+					tapesList.get(i).move(qActual.getTransition(kActual).getTapeMove().get(i));
+				}
+				qActual= changeState(tempTransition.getNewState());
+				// -- Reiniciamos variable tempKeyList.
+				tempKeyList.removeAll(tempKeyList);
+			}
+			else {
+				System.out.print(" | - \t| - \t| - \n");
+				stop = true;
+			}
+		}
+		if(qActual.issFinal()){
+			System.out.println("\n - Cadena aceptada.");
+		}
+		else{
+			System.out.println("\n - Cadena rechazada.");
+		}
+		
+	}
+
+	private State changeState(String newState) {
+		State qActual = new State(newState);
+		for(State st: statesList){
+			if(st.equals(qActual)){
+				return st;
+			}
+		}
+		return null;
 	}
 }

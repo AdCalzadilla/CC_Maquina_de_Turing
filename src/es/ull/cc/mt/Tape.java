@@ -17,6 +17,12 @@ public class Tape {
 	}
 	
 	public void move(char direction){
+		if(position == tape.size()){
+			tape.addLast('.');
+		}
+		else if(position == '0'){
+			tape.addFirst('.');
+		}
 		if(direction == 'R'){
 			setPosition(getPosition() + 1);
 		}
@@ -27,6 +33,7 @@ public class Tape {
 	}
 	
 	public void initWord(String cad){
+		tape.removeAll(tape);
 		for(int i=0; i<cad.length(); i++){
 			tape.add(cad.charAt(i));
 		}
@@ -42,11 +49,17 @@ public class Tape {
 	}
 	
 	public void write(char tChar){
-		tape.add(position, tChar);
+		tape.set(position, tChar);
 	}
 	
 	public char getActualChar(){
 		return tape.get(position);
+	}
+	
+	public void printTape(){
+		for(Character t : tape){
+			System.out.print(t+" ");
+		}
 	}
 
 	/**

@@ -2,8 +2,6 @@ package es.ull.cc.mt;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
 
 
 public class State {
@@ -76,7 +74,7 @@ public class State {
 			return false;
 		}
 		State theQState = (State) obj;
-		return theQState.getsName() == this.getsName();
+		return theQState.getsName().equals(this.getsName());
 	}
 		
 }
