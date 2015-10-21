@@ -1,9 +1,13 @@
-# Comentarios 
-q1 q2 q3         # conjunto Q
-a1 a2 a3         # conjunto Σ
-a1 a2 a3         # conjunto Γ
-q1               # estado inicial
-b                # símbolo blanco
-q2 q3            # conjunto F
-q1 a1 q2 a2 m    # función de transición: δ (q1, a1) = (q2, a2, m)
-# cada una de las transiciones en una línea distinta
+# Máquina que reconoce el lenguaje: w = (a|b|c)* ^ |a| es par.
+q0 q1
+a b c
+a b c .
+q0
+.
+q0
+q0 a q1 a R
+q0 b q0 b R
+q0 c q0 c R
+q1 a q0 a R
+q1 b q1 b R
+q1 c q1 c R

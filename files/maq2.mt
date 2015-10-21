@@ -1,13 +1,12 @@
-# Máquina que reconoce el lenguaje: w = (a|b|c)* ^ |a| es par.
-q0 q1
-a b c
-a b c .
+# Máquina de Turing con dos cintas. 
+q0 q1 q2
+0 1
+0 1 .
 q0
 .
-q0
-q0 a q1 a R
-q0 b q0 b R
-q0 c q0 c R
-q1 a q0 a R
-q1 b q1 b R
-q1 c q1 c R
+q2
+q0 1 . q0 1 1 R R
+q0 0 . q0 0 . R S
+q0 . . q1 . . R L
+q1 . 1 q1 1 . R L
+q1 . . q2 . . R L

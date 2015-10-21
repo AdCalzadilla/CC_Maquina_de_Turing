@@ -17,7 +17,7 @@ public class Tape {
 	}
 	
 	public void move(char direction){
-		if(position == tape.size()){
+		if(position == tape.size()-1){
 			tape.addLast('.');
 		}
 		else if(position == '0'){
@@ -73,7 +73,12 @@ public class Tape {
 	 * @param position the position to set
 	 */
 	public void setPosition(int position) {
-		this.position = position;
+		if(position < 0){
+			this.position = 0;
+		}
+		else{
+			this.position = position;
+		}
 	}
 
 }

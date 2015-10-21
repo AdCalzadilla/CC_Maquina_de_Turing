@@ -176,7 +176,7 @@ public class Mt {
 		// -- Inicializando la ejecución
 		for(int i=0; i< tapesList.size();i++){
 			System.out.print(" - Introduzca la cadena que irá en la cinta "+i+": ");
-			tempTape = sc.next();
+			tempTape = sc.nextLine();
 			tapesList.get(i).initWord(tempTape);
 		}
 		
