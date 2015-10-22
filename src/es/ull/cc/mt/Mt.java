@@ -180,17 +180,17 @@ public class Mt {
 			tapesList.get(i).initWord(tempTape);
 		}
 		
-		sc.close();
+		//sc.close(); -- Si lo dejo da error
 		
 		// -- Ejecución
-		System.out.println(" \n\n | Estado \t| Caracter \t| Cinta/s Cabezal \t| Estado siguiente \t| Escritura cintas \t| Movimiento |");
+		System.out.println(" \n\n | Estado \t| Caracter/es  Cinta/s Cabezal \t| Estado siguiente \t| Escritura cintas \t| Movimiento |");
 		System.out.println(" | ------ \t| -------- \t --------------- \t| ---------------- \t| ---------------- \t| ---------- |");
 		while(stop != true){
-			System.out.print(" | "+qActual.getsName()+" \t\t");
+			System.out.print(" | "+qActual.getsName()+" \t\t|");
 			for(int i=0; i<tapesList.size();i++){
 				tempKeyChar = tapesList.get(i).getActualChar();
 				tempKeyList.add(tempKeyChar);
-				System.out.print("| "+tempKeyChar+" \t\t| ");
+				System.out.print(" ["+tempKeyChar+"] ");
 				tapesList.get(i).printTape();
 				System.out.print(" / "+ tapesList.get(i).getPosition()+"\t");
 			}
