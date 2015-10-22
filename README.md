@@ -36,3 +36,12 @@ q1 c q1 c R
 ## Implementación
 
 Para la creación de la máquina se ha utilizado el paradigma de la progrmación orientada a objetos con el lenguaje de programación java y el entorno de desarrollo eclipse.
+
+## Ejercicios a realizar
+ 1. MT que reconozca el lenguaje L= { w Є Σ* | w=(a|b|c)* |a| es par }.
+
+2. MT que reciba como parámetro una cadena binaria y copie los unos en la cinta a continuación de la cadena de entrada, dejando un símbolo blanco en medio. Ejemplo:
+
+Cadena de entrada: **•10010110•**
+
+Resultado final: **•10010110•1111•**
