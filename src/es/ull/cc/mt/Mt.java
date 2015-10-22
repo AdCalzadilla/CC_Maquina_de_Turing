@@ -131,6 +131,16 @@ public class Mt {
 		return -1;
 	}
 	
+	private State changeState(String newState) {
+		State qActual = new State(newState);
+		for(State st: statesList){
+			if(st.equals(qActual)){
+				return st;
+			}
+		}
+		return null;
+	}
+	
 	public void printMt(){
 		System.out.println("M = (Q,\u03A3,\u0393,s,b,F,\u03B4)");
 		System.out.print("Q: ");
@@ -221,13 +231,4 @@ public class Mt {
 		
 	}
 
-	private State changeState(String newState) {
-		State qActual = new State(newState);
-		for(State st: statesList){
-			if(st.equals(qActual)){
-				return st;
-			}
-		}
-		return null;
-	}
 }
